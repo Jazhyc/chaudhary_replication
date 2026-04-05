@@ -1,0 +1,16 @@
+model,size,AUROC,Layers,best_layer,dataset
+LLaMA-3.1-8B-Instruct, 8B, 0.2189, 80, 12, Simple Contrastive
+LLaMA-3.1-70B-Instruct, 70B, 0.3425, 80, 32, Simple Contrastive
+Qwen2.5-0.5B-Instruct, 0.5B, 0.1719, 24, 3, Simple Contrastive
+Qwen2.5-1.5B-Instruct, 1.5B, 0.312, 24, 19, Simple Contrastive
+Qwen2.5-3B-Instruct, 3B, 0.2887, 28, 27, Simple Contrastive
+Qwen2.5-7B-Instruct, 7B, 0.2397, 36, 15, Simple Contrastive
+Qwen2.5-32B-Instruct, 32B, 0.234, 64, 2, Simple Contrastive
+Gpt-oss-20b, 20B, 0.3120, 24, 19, Simple Contrastive
+gemma-3-270m-it, 0.27B, 0.1503, 17, 6, Simple Contrastive
+gemma-3-1B-it, 1B, 0.1798, 25, 11, Simple Contrastive
+gemma-3-4B-it, 6B, 0.2459, 33, 13, Simple Contrastive
+gemma-3-12B-it, 13B, 0.2940, 47, 16, Simple Contrastive
+gemma-3-27B-it, 27B, 0.1985, 61, 3, Simple Contrastive
+Phi-3-mini-4k-instruct, 3.8B, 0.2112, 31, 27, Simple Contrastive
+Phi-3-medium-4k-instruct, 14B, 0.3289, 39, 7, Simple Contrastive

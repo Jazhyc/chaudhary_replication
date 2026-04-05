@@ -1,0 +1,17 @@
+# SAD repo (cloned via setup.sh, ~600MB)
+original_code/sad_repo/
+sad_data/
+
+# Model artifacts (large .pt files)
+results/*/vectors/
+results/*/normalized_vectors/
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+
+# Archives
+*.tar.gz

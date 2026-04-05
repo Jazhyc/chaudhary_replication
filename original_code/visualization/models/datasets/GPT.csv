@@ -1,0 +1,4 @@
+model,size,AUROC,Layers,best_layer,dataset
+Gpt-oss-20b-jinja2, 20B, 0.1965, 24, 15, Simple Contrastive
+Gpt-oss-20b-Mock-Harmony, 20B, 0.2513, 24, 19, Simple Contrastive
+Gpt-oss-20b-Huggingface, 20B, 0.3120, 24, 19, Simple Contrastive

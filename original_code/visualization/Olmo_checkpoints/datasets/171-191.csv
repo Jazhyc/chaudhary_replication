@@ -1,0 +1,17 @@
+revision,best_auroc,best_layer,optimal_threshold,sensitivity,specificity,status
+step387000-tokens1712B,0.7546,31,,,,success
+step386000-tokens1708B,0.7787,31,,,,success
+step385000-tokens1703B,0.749,12,,,,success
+step384000-tokens1699B,0.7631,31,,,,success
+step383000-tokens1694B,0.809,31,,,,success
+step382000-tokens1690B,0.6601,19,,,,success
+step381000-tokens1685B,0.6652,22,,,,success
+step380000-tokens1681B,0.6117,19,,,,success
+step374000-tokens1654B,0.7694,31,,,,success
+step373000-tokens1650B,0.745,31,,,,success
+step372000-tokens1646B,0.7666,31,,,,success
+step371000-tokens1641B,0.7737,31,,,,success
+step370000-tokens1637B,0.7348,30,,,,success
+step369000-tokens1632B,0.7322,30,,,,success
+step368000-tokens1628B,0.7251,28,,,,success
+step367000-tokens1623B,0.7866,25,,,,success

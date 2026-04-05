@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Stages Oversight KDS Score Analysis</title>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #FAFAF7;
+        }
+        h1 {
+            text-align: center;
+            color: black;
+            font-size: 24px;
+        }
+        #plot {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .info {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 15px;
+            background-color: #EDEDE8;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lowest KDS Score vs Model Size (Stages Oversight)</h1>
+    
+    <div class="info">
+        <p><strong>Note:</strong> This visualization shows the absolute minimum KDS scores for different models. Lower values indicate better performance.</p>
+        <p><strong>Data:</strong> 12 models across 3 families (Qwen-2.5, Gemma-3, Phi-3)</p>
+    </div>
+    
+    <div id="plot"></div>
+    
+    <script>
+        // Data extracted from stages_oversight_folder
+        const data = [
+            {model: 'gemma-3-0.27b-it', size: 0.27, abs_min_kds: 12.323, family: 'Gemma-3'},
+            {model: 'qwen2.5-0.5b', size: 0.5, abs_min_kds: 19.025, family: 'Qwen-2.5'},
+            {model: 'gemma-3-1b-it', size: 1.0, abs_min_kds: 3.433, family: 'Gemma-3'},
+            {model: 'qwen2.5-1.5b', size: 1.5, abs_min_kds: 10.422, family: 'Qwen-2.5'},
+            {model: 'qwen2.5-3b', size: 3.0, abs_min_kds: 7.382, family: 'Qwen-2.5'},
+            {model: 'phi-3-mini-4k-instruct', size: 3.8, abs_min_kds: 3.966, family: 'Phi-3'},
+            {model: 'gemma-3-4b-it', size: 4.0, abs_min_kds: 3.227, family: 'Gemma-3'},
+            {model: 'qwen2.5-7b', size: 7.0, abs_min_kds: 12.104, family: 'Qwen-2.5'},
+            {model: 'gemma-3-12b-it', size: 12.0, abs_min_kds: 6.829, family: 'Gemma-3'},
+            {model: 'phi-3-medium-4k-instruct', size: 14.0, abs_min_kds: 4.536, family: 'Phi-3'},
+            {model: 'gemma-3-27b-it', size: 27.0, abs_min_kds: 4.408, family: 'Gemma-3'},
+            {model: 'qwen2.5-32b', size: 32.0, abs_min_kds: 3.709, family: 'Qwen-2.5'}
+        ];
+        
+        // Add jitter
+        const jitterSeed = 42;
+        function seededRandom(seed) {
+            const x = Math.sin(seed++) * 10000;
+            return x - Math.floor(x);
+        }
+        
+        data.forEach((d, i) => {
+            d.size_jittered = d.size + (seededRandom(i * 2) - 0.5) * 0.3;
+        });
+        
+        // Group by family
+        const families = {
+            'Qwen-2.5': {color: '#FF6B6B', symbol: 'triangle-up'},
+            'Gemma-3': {color: '#4ECDC4', symbol: 'circle'},
+            'Phi-3': {color: '#95E1D3', symbol: 'square'}
+        };
+        
+        const traces = [];
+        
+        // Create traces for each family
+        Object.keys(families).forEach(family => {
+            const familyData = data.filter(d => d.family === family);
+            
+            traces.push({
+                x: familyData.map(d => d.size_jittered),
+                y: familyData.map(d => d.abs_min_kds),
+                mode: 'markers',
+                type: 'scatter',
+                name: family,
+                marker: {
+                    color: families[family].color,
+                    symbol: families[family].symbol,
+                    size: 20,
+                    line: {
+                        color: 'black',
+                        width: 1.5
+                    }
+                },
+                text: familyData.map(d => `${d.model}<br>Size: ${d.size}B<br>KDS: ${d.abs_min_kds.toFixed(3)}`),
+                hovertemplate: '%{text}<extra></extra>'
+            });
+        });
+        
+        // Add text labels
+        traces.push({
+            x: data.map(d => d.size_jittered + 0.3),
+            y: data.map(d => d.abs_min_kds + 0.2),
+            mode: 'text',
+            type: 'scatter',
+            text: data.map(d => d.abs_min_kds.toFixed(1)),
+            textfont: {
+                color: 'black',
+                size: 11,
+                family: 'Arial'
+            },
+            showlegend: false,
+            hoverinfo: 'skip'
+        });
+        
+        const layout = {
+            title: {
+                text: 'Lowest KDS Score vs Model Size (Stages Oversight)',
+                font: {
+                    size: 20,
+                    color: 'black'
+                },
+                x: 0.5,
+                xanchor: 'center'
+            },
+            width: 900,
+            height: 600,
+            plot_bgcolor: '#FAFAF7',
+            paper_bgcolor: '#FAFAF7',
+            font: {
+                color: 'black',
+                size: 11
+            },
+            legend: {
+                font: {
+                    size: 13,
+                    color: 'black',
+                    family: 'Arial'
+                },
+                orientation: 'h',
+                yanchor: 'top',
+                y: 1.0,
+                xanchor: 'left',
+                x: 0,
+                bgcolor: '#EDEDE8',
+                borderwidth: 0
+            },
+            margin: {
+                l: 80,
+                r: 120,
+                t: 80,
+                b: 80
+            },
+            xaxis: {
+                range: [-1, 35],
+                title: {
+                    text: 'Model Parameters (Billions)',
+                    font: {
+                        size: 18,
+                        color: 'black',
+                        family: 'Arial'
+                    }
+                },
+                tickfont: {
+                    size: 13,
+                    color: 'black',
+                    family: 'Arial'
+                },
+                linecolor: 'black',
+                linewidth: 1.5,
+                gridcolor: '#E5E5E5',
+                gridwidth: 0.8,
+                showgrid: true,
+                zeroline: false,
+                mirror: false,
+                ticks: 'outside',
+                ticklen: 5
+            },
+            yaxis: {
+                title: {
+                    text: 'Absolute Minimum KDS Score',
+                    font: {
+                        size: 18,
+                        color: 'black',
+                        family: 'Arial'
+                    }
+                },
+                tickfont: {
+                    size: 13,
+                    color: 'black',
+                    family: 'Arial'
+                },
+                linecolor: 'black',
+                linewidth: 1.5,
+                gridcolor: '#E5E5E5',
+                gridwidth: 0.8,
+                showgrid: true,
+                zeroline: false,
+                mirror: false,
+                ticks: 'outside',
+                ticklen: 5
+            }
+        };
+        
+        const config = {
+            responsive: true,
+            displayModeBar: true,
+            displaylogo: false,
+            toImageButtonOptions: {
+                format: 'png',
+                filename: 'stages_oversight_kds_vs_size',
+                height: 600,
+                width: 900,
+                scale: 2
+            }
+        };
+        
+        Plotly.newPlot('plot', traces, layout, config);
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,6 @@
+model,size,AUROC,Layers,best_layer,dataset
+Qwen2.5-0.5B-Instruct, 0.5B, 0.1627, 24, 14, Simple Contrastive
+Qwen2.5-1.5B-Instruct, 1.5B, 0.312, 24, 19, Simple Contrastive
+Qwen2.5-3B-Instruct, 3B, 0.2887, 36, 15, Simple Contrastive
+Qwen2.5-7B-Instruct, 7B, 0.2397, 36, 15, Simple Contrastive
+Qwen2.5-32B-Instruct, 32B, 0.234, 64, 18, Simple Contrastive
