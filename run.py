@@ -18,6 +18,9 @@ import pandas as pd
 from tqdm import tqdm
 from sklearn.metrics import roc_curve, auc
 from shim import HookedTransformerShim
+from dotenv import load_dotenv
+
+load_dotenv()  # Load environment variables from .env file (e.g., for HuggingFace API keys)
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--model", required=True, help="HuggingFace model ID")

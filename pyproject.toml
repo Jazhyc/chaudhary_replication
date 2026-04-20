@@ -12,6 +12,7 @@ dependencies = [
     "seaborn",
     "tqdm",
     "datasets",
+    "dotenv>=0.9.9",
 ]
 
 [tool.uv]
