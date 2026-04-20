@@ -1,6 +1,6 @@
 # SAD repo (cloned via setup.sh, ~600MB)
 original_code/sad_repo/
-sad_data/
+sad_data
 
 # Model artifacts (large .pt files)
 results/*/vectors/

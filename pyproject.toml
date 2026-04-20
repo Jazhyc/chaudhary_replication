@@ -1,0 +1,18 @@
+[project]
+name = "chaudhary-replication"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "torch>=2.0.0",
+    "transformers>=5.5.0",
+    "scikit-learn",
+    "pandas",
+    "numpy",
+    "matplotlib",
+    "seaborn",
+    "tqdm",
+    "datasets",
+]
+
+[tool.uv]
+package = false

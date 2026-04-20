@@ -22,6 +22,7 @@ from shim import HookedTransformerShim
 parser = argparse.ArgumentParser()
 parser.add_argument("--model", required=True, help="HuggingFace model ID")
 parser.add_argument("--chunk-size", type=int, default=10, help="Layers per forward pass in Stage 2")
+parser.add_argument("--force", action="store_true", help="Overwrite existing results")
 args = parser.parse_args()
 
 MODEL_ID = args.model
@@ -46,6 +47,10 @@ if SAD_ZIP is None:
     exit(1)
 SAD_PASSWORD = b"sadtimesforthesetimes"
 CHUNK_SIZE = args.chunk_size
+
+if os.path.exists(PROBE_DIR) and os.listdir(PROBE_DIR) and not args.force:
+    print(f"SKIP: Results already exist for {MODEL_NAME} (use --force to overwrite)")
+    exit(0)
 
 if torch.cuda.is_available():
     DEVICE = "cuda"
