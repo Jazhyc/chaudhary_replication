@@ -25,6 +25,7 @@ load_dotenv()  # Load environment variables from .env file (e.g., for HuggingFac
 parser = argparse.ArgumentParser()
 parser.add_argument("--model", required=True, help="HuggingFace model ID")
 parser.add_argument("--chunk-size", type=int, default=10, help="Layers per forward pass in Stage 2")
+parser.add_argument("--dtype", choices=["float32", "bfloat16", "float16"], default="bfloat16", help="Model dtype")
 parser.add_argument("--force", action="store_true", help="Overwrite existing results")
 args = parser.parse_args()
 
@@ -61,7 +62,7 @@ elif torch.backends.mps.is_available():
     DEVICE = "mps"
 else:
     DEVICE = "cpu"
-DTYPE = torch.float32
+DTYPE = getattr(torch, args.dtype)
 
 # ============================================================
 # Load model
