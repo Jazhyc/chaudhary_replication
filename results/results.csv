@@ -10,3 +10,5 @@ Qwen3.5-4B,Qwen3.5-4B,0.2724,32,11,Simple Contrastive
 Qwen3.5-9B,Qwen3.5-9B,0.2549,32,7,Simple Contrastive
 Qwen3.5-27B,Qwen3.5-27B,0.3167,64,28,Simple Contrastive
 gemma-4-E2B-it,gemma-4-E2B-it,0.3695,35,7,Simple Contrastive
+gemma-4-E4B-it,gemma-4-E4B-it,0.2902,42,16,Simple Contrastive
+gemma-4-31B-it,gemma-4-31B-it,0.4077,60,37,Simple Contrastive

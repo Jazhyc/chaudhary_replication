@@ -107,7 +107,9 @@ ax.plot(our_qwen35["params_b"], our_qwen35["AUROC"], color=RED, linewidth=LW, zo
 ax.scatter(our_qwen35["params_b"], our_qwen35["AUROC"],
            color=RED, marker="s", s=MS**2, zorder=3, label="Qwen-3.5 (ours)")
 
-# Gemma-4 (ours) — single point per model, no line
+# Gemma-4 (ours)
+our_gemma4 = our_gemma4.sort_values("params_b")
+ax.plot(our_gemma4["params_b"], our_gemma4["AUROC"], color=GREEN, linewidth=LW, zorder=2)
 ax.scatter(our_gemma4["params_b"], our_gemma4["AUROC"],
            color=GREEN, marker="^", s=MS**2, zorder=3, label="Gemma-4 (ours)")
 
