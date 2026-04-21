@@ -4,3 +4,9 @@ gemma-3-1b-it,gemma-3-1b-it,0.2026,26,11,Simple Contrastive
 gemma-3-4b-it,gemma-3-4b-it,0.2476,34,13,Simple Contrastive
 gemma-3-12b-it,gemma-3-12b-it,0.3144,48,16,Simple Contrastive
 gemma-3-27b-it,gemma-3-27b-it,0.1811,62,15,Simple Contrastive
+Qwen3.5-0.8B,Qwen3.5-0.8B,0.2444,24,17,Simple Contrastive
+Qwen3.5-2B,Qwen3.5-2B,0.2418,24,13,Simple Contrastive
+Qwen3.5-4B,Qwen3.5-4B,0.2724,32,11,Simple Contrastive
+Qwen3.5-9B,Qwen3.5-9B,0.2549,32,7,Simple Contrastive
+Qwen3.5-27B,Qwen3.5-27B,0.3167,64,28,Simple Contrastive
+gemma-4-E2B-it,gemma-4-E2B-it,0.3695,35,7,Simple Contrastive

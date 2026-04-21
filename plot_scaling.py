@@ -54,13 +54,20 @@ if not paper_gemma3:
     paper_gemma3 = {0.27: 0.1503, 1.0: 0.1798, 4.0: 0.2459, 12.0: 0.2940, 27.0: 0.1985}
 
 # ---------------------------------------------------------------------------
-# "Ours" results from results_overall
+# "Ours" results — prefer results/results.csv (current run); fall back to
+# results_overall if it doesn't exist yet. Deduplicate by keeping the last
+# entry per model (run.py appends, so later rows are more recent).
 # ---------------------------------------------------------------------------
-dfs = []
-for f in ["results_overall/results_a40.csv", "results_overall/results_a100.csv"]:
-    if os.path.exists(f):
-        dfs.append(pd.read_csv(f))
-ours_df = pd.concat(dfs, ignore_index=True)
+results_csv = "results/results.csv"
+if os.path.exists(results_csv):
+    ours_df = pd.read_csv(results_csv)
+    ours_df = ours_df.drop_duplicates(subset="model", keep="last")
+else:
+    dfs = []
+    for f in ["results_overall/results_a40.csv", "results_overall/results_a100.csv"]:
+        if os.path.exists(f):
+            dfs.append(pd.read_csv(f))
+    ours_df = pd.concat(dfs, ignore_index=True)
 ours_df["params_b"] = ours_df["model"].map(PARAM_SIZES)
 
 our_gemma3  = ours_df[ours_df["model"].str.startswith("gemma-3")].dropna(subset=["params_b"])
