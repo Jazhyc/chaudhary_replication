@@ -1,0 +1,6 @@
+model,size,AUROC,Layers,best_layer,dataset
+gemma-3-270m-it,gemma-3-270m-it,0.2179,18,3,Simple Contrastive
+gemma-3-1b-it,gemma-3-1b-it,0.2026,26,11,Simple Contrastive
+gemma-3-4b-it,gemma-3-4b-it,0.2476,34,13,Simple Contrastive
+gemma-3-12b-it,gemma-3-12b-it,0.3144,48,16,Simple Contrastive
+gemma-3-27b-it,gemma-3-27b-it,0.1811,62,15,Simple Contrastive
